@@ -12,6 +12,7 @@ type User struct {
 	Username     string
 	LanguageCode string
 	IsBot        bool
+	Created      time.Time
 }
 
 type Message struct {

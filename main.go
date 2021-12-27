@@ -53,7 +53,6 @@ func main() {
 				log.Printf("new user detected: %d", id)
 			}
 		}
-
 	})
 	//
 	//bot.Handle(tb.OnText, func(msg *tb.Message) {
@@ -85,5 +84,5 @@ func main() {
 	//
 	//})
 
-	bot.Start()
+	//bot.Start()
 }
