@@ -1,23 +1,20 @@
 package repository
 
 import (
-	"gorm.io/gorm"
 	"time"
 )
 
 type User struct {
-	gorm.Model
+	Id           int64
 	TgId         int64
 	FirstName    string
 	LastName     string
 	Username     string
 	LanguageCode string
 	IsBot        bool
-	Messages     []Message
 }
 
 type Message struct {
-	gorm.Model
 	Datetime time.Time
 	Text     string
 	UserID   uint
@@ -25,8 +22,6 @@ type Message struct {
 }
 
 type Chat struct {
-	gorm.Model
-	ChatId   int64
-	Title    string
-	Messages []Message
+	ChatId int64
+	Title  string
 }
