@@ -45,6 +45,7 @@ func main() {
 		return
 	}
 
+	log.Printf("BOT initialized with url %s\n", bot.URL)
 	bot.Handle(tb.OnUserJoined, func(msg *tb.Message) {
 
 		joined := msg.UserJoined
