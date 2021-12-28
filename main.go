@@ -13,30 +13,27 @@ var repo repository.Repository
 func main() {
 	repo = repository.InitDb()
 	port := os.Getenv("PORT")
-	webhookUrl := os.Getenv("WEBHOOK_URL") + "/bot" + os.Getenv("BOT_TOKEN")
+	webhookUrl := os.Getenv("WEBHOOK_URL")
+	verbose := false
+	if os.Getenv("IS_VERBOSE") == "true" {
+		verbose = true
+	}
 
 	log.Print("Connecting ...\n")
 	log.Printf("env:port %s\n", port)
 	log.Printf("webhookUrl: %s\n", webhookUrl)
-
-	webhookTlsCertPath := os.Getenv("CERT_PATH")
-	webhookTlsKeyPath := os.Getenv("KEY_PATH")
 
 	webhook := &tb.Webhook{
 		Listen: ":" + port,
 		Endpoint: &tb.WebhookEndpoint{
 			PublicURL: webhookUrl,
 		},
-		HasCustomCert: true,
-		TLS: &tb.WebhookTLS{
-			Key:  webhookTlsKeyPath,
-			Cert: webhookTlsCertPath,
-		},
 	}
 
 	settings := tb.Settings{
-		Token:  os.Getenv("BOT_TOKEN"),
-		Poller: webhook,
+		Token:   os.Getenv("BOT_TOKEN"),
+		Poller:  webhook,
+		Verbose: verbose,
 	}
 
 	bot, err := tb.NewBot(settings)
