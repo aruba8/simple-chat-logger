@@ -72,7 +72,7 @@ func main() {
 	})
 
 	bot.Handle(tb.OnText, func(msg *tb.Message) {
-
+		log.Printf("User text: %s", msg.Text)
 	})
 
 	bot.Start()
