@@ -19,10 +19,18 @@ func main() {
 	log.Printf("env:port %s\n", port)
 	log.Printf("webhookUrl: %s\n", webhookUrl)
 
+	webhookTlsCertPath := os.Getenv("CERT_PATH")
+	webhookTlsKeyPath := os.Getenv("KEY_PATH")
+
 	webhook := &tb.Webhook{
 		Listen: ":" + port,
 		Endpoint: &tb.WebhookEndpoint{
 			PublicURL: webhookUrl,
+		},
+		HasCustomCert: true,
+		TLS: &tb.WebhookTLS{
+			Key:  webhookTlsKeyPath,
+			Cert: webhookTlsCertPath,
 		},
 	}
 
