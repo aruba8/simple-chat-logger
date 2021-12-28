@@ -12,10 +12,17 @@ var repo repository.Repository
 
 func main() {
 	repo = repository.InitDb()
+	port := os.Getenv("PORT")
+	webhookUrl := os.Getenv("WEBHOOK_URL") + "/bot" + os.Getenv("BOT_TOKEN")
+
+	log.Print("Connecting ...\n")
+	log.Printf("env:port %s\n", port)
+	log.Printf("webhookUrl: %s\n", webhookUrl)
+
 	webhook := &tb.Webhook{
-		Listen: ":" + os.Getenv("PORT"),
+		Listen: ":" + port,
 		Endpoint: &tb.WebhookEndpoint{
-			PublicURL: os.Getenv("WEBHOOK_URL") + "/bot" + os.Getenv("BOT_TOKEN"),
+			PublicURL: webhookUrl,
 		},
 	}
 
