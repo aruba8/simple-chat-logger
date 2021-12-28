@@ -14,7 +14,7 @@ type Repository struct {
 }
 
 const (
-	usersTableName    string = "users"
+	usersTableName    string = "users_test"
 	groupsTableName   string = "groups"
 	messagesTableName string = "messages"
 )
@@ -50,7 +50,6 @@ func (r Repository) GetUsers() ([]User, error) {
 			&user.Username,
 			&user.LanguageCode,
 			&user.IsBot,
-			&user.Username,
 			&user.Created,
 		); err != nil {
 			return users, err

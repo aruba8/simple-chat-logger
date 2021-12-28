@@ -54,35 +54,10 @@ func main() {
 			}
 		}
 	})
-	//
-	//bot.Handle(tb.OnText, func(msg *tb.Message) {
-	//	sender := msg.Sender
-	//	var user repository.User
-	//	repository.DB.FirstOrCreate(&user, &repository.User{
-	//		TgId:         int64(sender.ID),
-	//		FirstName:    sender.FirstName,
-	//		LastName:     sender.LastName,
-	//		Username:     sender.Username,
-	//		LanguageCode: sender.LanguageCode,
-	//		IsBot:        sender.IsBot,
-	//	})
-	//
-	//	var chat repository.Chat
-	//	repository.DB.FirstOrCreate(&chat, &repository.Chat{
-	//		ChatId: msg.Chat.ID,
-	//		Title:  msg.Chat.Title,
-	//	})
-	//
-	//	repository.DB.Create(&repository.Message{
-	//		Datetime: time.Unix(msg.Unixtime, 0),
-	//		Text:     msg.Text,
-	//		ChatID:   chat.ID,
-	//		UserID:   user.ID,
-	//	})
-	//	repository.DB.First(&user, "tg_id = ?", sender.ID)
-	//	log.Printf("%v", user)
-	//
-	//})
 
-	//bot.Start()
+	bot.Handle(tb.OnText, func(msg *tb.Message) {
+
+	})
+
+	bot.Start()
 }
